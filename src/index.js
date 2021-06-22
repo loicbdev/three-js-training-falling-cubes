@@ -26,7 +26,7 @@ function Plane({ position }) {
   return (
     <mesh ref={ref} receiveShadow>
       <planeBufferGeometry attach="geometry" args={[1000, 1000]} />
-      <meshPhongMaterial attach="material" color="#008080" />
+      <meshPhongMaterial attach="material" color="#272727" />
     </mesh>
   );
 }
@@ -40,7 +40,7 @@ function Box({ position }) {
   return (
     <mesh ref={ref} castShadow receiveShadow>
       <boxGeometry attach="geometry" args={[2, 2, 2]} />
-      <meshStandardMaterial attach="material" color="#ffd3b6"/>
+      <meshStandardMaterial attach="material" />
     </mesh>
   );
 }
@@ -52,12 +52,12 @@ export default function App() {
   useEffect(() => void setTimeout(() => set(false), 5000), []);
   return (
     <Canvas className="main" shadowMap camera={{ position: [0, 0, 15] }}>
-      <ambientLight intensity={0.6} />
+      <ambientLight intensity={0.5} />
       <spotLight
         intensity={0.6}
         position={[30, 30, 50]}
-        angle={0.3}
-        penumbra={0.8}
+        angle={0.2}
+        penumbra={1}
         castShadow
       />
       <Provider>
@@ -69,7 +69,6 @@ export default function App() {
         <Box position={[-1, 1, 8]} />
         <Box position={[-2, 2, 13]} />
         <Box position={[2, -1, 13]} />
-        <Box position={[5, -1, 13]} />
         {!showPlane && <Box position={[0.5, 1.0, 20]} />}
       </Provider>
     </Canvas>
